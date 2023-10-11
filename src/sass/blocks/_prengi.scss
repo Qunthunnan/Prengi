@@ -1,0 +1,52 @@
+.prengi {
+    padding: 80px 0;
+    &__wrapper {
+        display: grid;
+        grid-template: repeat(3, 255px)  / repeat(3, 360px);
+        justify-content: space-between;
+    }
+    &__info-block {
+        padding: 36px 47px;
+        border: solid 1px #ececec;
+        border-radius: 2px;
+        img {
+            display: block;
+            margin: 0px auto;
+        }
+        &-text {
+            margin-top: 30px;
+            color: #393939;
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+        }
+        &-question {
+            background: url(../icons/withPrengi/prengiQuestion.png) right bottom no-repeat;
+        }
+        &-proposition {
+            background: url(../icons/withPrengi/prengiDone.png) right bottom no-repeat;
+            &-text {
+                font-weight: 700;
+            }
+        }
+    }
+    &__title {
+        grid-column: 1 / 4;
+        font-size: 48px;
+        font-weight: 700px;
+        text-align: center;
+        margin-top: 155px;
+        position: relative;
+        &::before {
+           content: '';
+           display: block;
+           position: absolute;
+           top: -92px;
+           left: 50%;
+           transform: translateX(-50%);
+           height: 70px;
+           width: 170px;
+           background: url('../icons/withPrengi/shevron.png') center / cover no-repeat;
+        }
+    }
+}

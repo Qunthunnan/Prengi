@@ -7,12 +7,147 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
-    <header class="test">
-        <h1>Тест</h1>
-        
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="header__country">
+                    <img src="icons/header/ua.jpg" alt="ua" class="header__country-image">
+                    <div>
+                        <h2 class="header__country-title">Ukraine</h2>
+                        <div class="header__country-text">
+                            <a href="tel:+3806393007022">tel. +38(063) 930 07 002</a><br>
+                            <a href="mailto:hi@vasolutions.com.ua">hi@vasolutions.com.ua</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__country">
+                    <img src="icons/header/dl.jpg" alt="dl" class="header__country-image">
+                    <div>
+                        <h2 class="header__country-title">Germany</h2>
+                        <div class="header__country-text">
+                            <a target="_blank" href="https://maps.app.goo.gl/RWRuGnDZXY8DqGsg8">Trierer Strabe 35, 54329 Konz</a><br>
+                            <a href="tel:+352661880305">tel. +352 661 88 03 05</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__country">
+                    <img src="icons/header/es.jpg" alt="es" class="header__country-image">
+                    <div>
+                        <h2 class="header__country-title">Estonia</h2>
+                        <div class="header__country-text">
+                            <a target="_blank" href="https://maps.app.goo.gl/usNCh1LWCv1poPbD7">K. Karbery 16/27, 13812 Tallinn</a><br>
+                            <a href="tel:+352661880305">tel. +352 661 88 03 05</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__country">
+                    <img src="icons/header/uk.jpg" alt="uk" class="header__country-image">
+                    <div>
+                        <h2 class="header__country-title">Great Britain</h2>
+                        <div class="header__country-text">
+                            <a target="_blank" href="https://maps.app.goo.gl/bWY28s4YzexpBh5K8">E20LP, Golden vc House, London</a><br>
+                            <a href="tel:+447501095529">tel. +44 750 109 55 29</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__country">
+                    <img src="icons/header/luxemboorg.jpg" alt="luxemboorg" class="header__country-image">
+                    <div>
+                        <h2 class="header__country-title">Luxembourg</h2>
+                        <div class="header__country-text">
+                            <a target="_blank" href="https://maps.app.goo.gl/dh8xD6bP68xgbf6p7">2,Rue d`Avalon, L-1159 Luxembourg</a><br>
+                            <a href="tel:+352661880305">tel. +352 661 88 03 05</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
+    <section class="main">
+        <div class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="img/main/mainBg0.jpg" alt="backgtoud1">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="img/main/mainBg.jpeg" alt="backgtoud2">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="img/main/mainBg0.jpg" alt="backgtoud3">
+                    </li>
+                    <li class="splide__slide"><img src="img/main/mainBg0.jpg" alt="backgtoud4">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="img/main/mainBg0.jpg" alt="backgtoud5">
+                    </li>
+                </ul>
+            </div>
+            <div class="splide__arrows">
+                <div class="splide__pagination"></div>
+            </div>
+        </div>
+
+        <div class="main__text-content-wrapper">
+            <div class="container">
+                <div class="main__head">
+                    <img src="icons/main/logo.png" alt="logo" class="main__head-logo">
+                    <nav class="main__head-menu">
+                        <a target="_blank" href="#" class="main__head-menu-item">Головна</a>
+                        <a target="_blank" href="#" class="main__head-menu-item">Модулі</a>
+                        <a target="_blank" href="#" class="main__head-menu-item">Галузі</a>
+                        <a target="_blank" href="#" class="main__head-menu-item">Про нас</a>
+                        <a target="_blank" href="#" class="main__head-menu-item">Наші обов'яки</a>
+                    </nav>
+                </div>
+                <div class="main__text-wrapper">
+                    <h1 class="main__title">Керуйте своїм бізнесом через смартфон</h1>
+                    <h2 class="main__subtitle"><b>PRENGI</b> - Платформа для прозорого керування бізнесом</h2>
+                </div>
+                <button class="button button_main">Отримати доступ</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="prengi">
+        <div class="container">
+            <div class="prengi__wrapper">
+                <div class="prengi__info-block prengi__info-block-question">
+                    <img src="icons/withPrengi/prengi1.png" alt="prengi-schedule">
+                    <div class="prengi__info-block-text">Нема оперативності у прийнятті рішень?</div>
+                </div>
+                <div class="prengi__info-block prengi__info-block-question">
+                    <img src="icons/withPrengi/prengi2.png" alt="prengi-bd">
+                    <div class="prengi__info-block-text">Нема контролю обслуговування?</div>
+                </div>
+                <div class="prengi__info-block prengi__info-block-question">
+                    <img src="icons/withPrengi/prengi3.png" alt="prengi-analyse">
+                    <div class="prengi__info-block-text">Важко прогнозувати та аналізувати данні?</div>
+                </div>
+
+                <h2 class="prengi__title">З PRENGI</h2>
+
+                <div class="prengi__info-block prengi__info-block-proposition">
+                    <img src="icons/withPrengi/prengi4.png" alt="prengi-money">
+                    <div class="prengi__info-block-text prengi__info-block-proposition-text">Усі затрати заплановані та розписані</div>
+                </div>
+                <div class="prengi__info-block prengi__info-block-proposition">
+                    <img src="icons/withPrengi/prengi5.png" alt="prengi-analitycs">
+                    <div class="prengi__info-block-text prengi__info-block-proposition-text">Коректна аналітка даних online</div>
+                </div>
+                <div class="prengi__info-block prengi__info-block-proposition">
+                    <img src="icons/withPrengi/prengi6.png" alt="prengi-integration">
+                    <div class="prengi__info-block-text prengi__info-block-proposition-text">Проста інтеграція з будь-яким вашим ПЗ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script defer src="js/script.js"></script>
 </body>
 </html>

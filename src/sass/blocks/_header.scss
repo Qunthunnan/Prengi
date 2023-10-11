@@ -1,5 +1,31 @@
-header {
-    h1 {
-        color: aqua;
+.header {
+    height: 85px;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__country {
+        margin-top: 20px;
+        height: 50px;
+        width: 250px;
+        display: flex;
+        &-image {
+            display: block;
+            height: 21px;
+            margin-right: 11px;
+        }
+        &-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0px;
+        }
+        &-text {
+            font-size: 13px;
+            font-weight: 300;
+            a:link, a:visited {
+                color: black;
+                text-decoration: none;
+            }
+        }
     }
 }
