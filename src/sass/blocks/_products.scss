@@ -1,0 +1,67 @@
+.products {
+    padding: 80px 0px 60px 0px;
+    background: url('../img/expertDesitions/expertBg.jpg') center / cover no-repeat;
+}
+
+.splide[aria-label="productsSlider"] {
+    margin-top: 30px;
+    .splide__track {
+        margin-top: 30px;
+    }
+    .splide__pagination {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid white;
+        border-radius: 5px;
+        margin: 0px auto;
+        padding: 13px;
+        width: 843px;
+        li {
+            display: block;
+            border-right: 1px solid #ffffff99;
+            .splide__pagination__page {
+                background: #ffffff00;
+                color: white;
+                font-size: 14px;
+                font-weight: 300;
+                height: auto;
+                width: auto;
+                border-radius: 0px;
+                margin: 0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-bottom: 0px;
+                padding-top: 0px;
+                padding: 12px 25px;
+                transform: scale(1);
+            }
+            .is-active {
+                color: #00c2f0
+            }
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    .splide__slide {
+        img {
+            display: block;
+            margin: 0px auto;
+        }
+    }
+
+    .splide__arrow {
+        background: rgba(0, 0, 0, 0);
+        border-radius: 0px;
+        svg {
+            height: unset;
+            width: unset;
+        }
+    }
+}
+
+
+
