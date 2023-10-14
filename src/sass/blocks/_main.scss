@@ -48,6 +48,13 @@
 }
 
 .splide[aria-label="mainSlider"] {
+    .splide__slide {
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
     .splide__arrows {
         position: absolute;
         top: 90%;
@@ -66,6 +73,10 @@
             width: 11px;
             background:#fff0;
             border: 1px solid white;
+        }
+
+        .is-active {
+            background: white;
         }
     }
     
