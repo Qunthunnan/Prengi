@@ -1,10 +1,14 @@
 .main {
     min-height: 700px;
     position: relative;
+    &__slider-container {
+        position: relative;
+    }
     &__text-content-wrapper {
         position: absolute;
         top: 39px;
         width: 100%;
+        z-index: 2;
     }
     &__head {
         height: 65px;
@@ -15,7 +19,7 @@
         }
         &-menu {
             margin-top: 20px;
-            a {
+            &-item {
                 font-size: 13px;
                 font-weight: 500;
                 color: white;
@@ -50,7 +54,6 @@
 .splide[aria-label="mainSlider"] {
     .splide__slide {
         img {
-            width: 100%;
             object-fit: cover;
         }
     }
@@ -97,3 +100,60 @@
     }
 }
 
+@media (max-width: 991px) {
+    .main {
+        &__head{
+            &-menu {
+                &-item {
+                    margin: 0px 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .main {
+        &__text-content-wrapper {
+            .container {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .main {
+            .splide[aria-label="mainSlider"] {
+            .splide__slide {
+                img {
+                    object-fit: cover;
+                    object-position: -660px;
+                }
+            }}
+
+        &__text-content-wrapper {
+            top: 0px
+        }
+        &__head {
+            &-logo {
+                display: block;
+                width: 90px;
+                object-fit: contain;
+            }
+            &-menu {
+                display: none;
+            }
+        }
+        &__text-wrapper {
+            width: unset;
+        }
+        &__title {
+            font-size: 30px;
+        }
+        &__subtitle {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    }
+}

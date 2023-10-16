@@ -34,7 +34,20 @@ headerPhonesElements.forEach((item, i) => {
 });
 const smallDisplay = window.matchMedia('(max-width: 991px)'),
 	  normalDisplay = window.matchMedia('(min-width: 992px)'),
-	  mobileHeaderButton = document.querySelector('.header__mobile-button');
+	  mainSlider = new Splide( '.splide[aria-label="mainSlider"]', {
+		drag: false
+	  }),
+	  mobileHeaderButton = document.querySelector('.header__mobile-button'),
+	  sliderContainer = document.querySelector('.main__slider-container');
+	  hammer = new Hammer(sliderContainer);
+
+hammer.on('swiperight', function () {
+	mainSlider.go('<');
+});
+
+hammer.on('swipeleft', function () {
+    mainSlider.go('>');
+});
 
 smallDisplay.addEventListener('change', (e)=> {
 	if (e.matches) {
@@ -58,12 +71,13 @@ if(smallDisplay.matches) {
 	headerSmallPhoneAdaptation(headerPhonesElements);
 }
 
-const mainSlider = new Splide( '.splide[aria-label="mainSlider"]' );
-// ,
-//       productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
+
+// 
+//      const productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
 //       productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'];
 
 mainSlider.mount();
+
 
 // productsSlider.on( 'pagination:mounted', function ( data ) {
 //     data.list.classList.add( 'splide__pagination--custom' );

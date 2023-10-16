@@ -4,6 +4,9 @@
         display: flex;
         justify-content: space-between;
     }
+    &__mobile-menu {
+        display: none;
+    }
     &__country {
         margin-top: 20px;
         height: 50px;
@@ -120,6 +123,7 @@
         display: flex;
         &__mobile-button {
             display: flex;
+            z-index: 4;
         }
         &_menu-active {
             height: 70vh;
@@ -145,6 +149,20 @@
                     }
                     &-text {
                         margin-top: 8px;
+                    }
+                }
+                .header__mobile-menu {
+                    display: flex;
+                    justify-content: space-between;
+                    &-item {
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: black;
+                        text-transform: uppercase;
+                        &:link, &:visited {
+                            color: black;
+                            text-decoration: none;
+                        }
                     }
                 }
             }
