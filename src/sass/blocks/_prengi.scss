@@ -8,7 +8,7 @@
     &__info-block {
         padding: 36px 47px;
         border: solid 1px #ececec;
-        border-radius: 2px;
+        border-radius: 4px;
         img {
             display: block;
             margin: 0px auto;
@@ -33,7 +33,7 @@
     &__title {
         grid-column: 1 / 4;
         font-size: 48px;
-        font-weight: 700px;
+        font-weight: 700;
         text-align: center;
         margin-top: 155px;
         position: relative;
@@ -47,6 +47,101 @@
            height: 70px;
            width: 170px;
            background: url('../icons/withPrengi/shevron.png') center / cover no-repeat;
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .prengi {
+        &__wrapper {
+            grid-template: repeat(3,212px)/repeat(3,300px);
+        }
+        &__info-block {
+            padding: 35px 44px;
+            img {
+                object-fit: contain;
+                width: 75px;
+            }
+            &-text {
+                margin-top: 10px;
+            }
+        }
+        &__title {
+            margin-top: 125px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .prengi {
+        padding: 60px 0px;
+        &__wrapper {
+            grid-template: repeat(3,154px)/repeat(3,218px);
+        }
+        &__info-block {
+            padding: 60px 0px;
+            padding: 14px 17px;
+            img {
+                width: 55px;
+            }
+            &-text {
+                font-size: 15px;
+            }
+            &-question {
+                background: url(../icons/withPrengi/prengiQuestion.png) right bottom / 40% no-repeat;
+            }
+            &-proposition {
+                background: url(../icons/withPrengi/prengiDone.png) right bottom / 40% no-repeat;
+            }
+        }
+        &__title {
+            margin-top: 80px;
+            font-size: 45px;
+            &:before {
+                top: -59px;
+                height: 50px;
+                width: 98px;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .prengi {
+        &__wrapper {
+            grid-template: repeat(6,255px)/repeat(1,360px);
+            grid-auto-rows: 255px;
+            justify-content: center;
+            gap: 30px;
+        }
+        &__title {
+            margin-top: 120px;
+            grid-column: 1/1;
+        }
+        &__info-block {
+            padding: 36px 47px;
+            img {
+                width: unset;
+            }
+            &-text {
+                margin-top: 30px;
+                font-size: 18px;
+            }
+        }
+        &-question {
+            background: url(../icons/withPrengi/prengiQuestion.png) right bottom no-repeat;
+        }
+        &-proposition {
+            background: url(../icons/withPrengi/prengiDone.png) right bottom no-repeat;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .prengi {
+        padding: 40px 0px;
+        &__wrapper {
+            grid-template: repeat(6,255px)/repeat(1,minmax(300px, 360px));
         }
     }
 }

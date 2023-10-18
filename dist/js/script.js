@@ -39,7 +39,10 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 	  }),
 	  mobileHeaderButton = document.querySelector('.header__mobile-button'),
 	  sliderContainer = document.querySelector('.main__slider-container');
-	  hammer = new Hammer(sliderContainer);
+	  hammer = new Hammer(sliderContainer),
+	  productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
+      productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'];
+
 
 hammer.on('swiperight', function () {
 	mainSlider.go('<');
@@ -71,21 +74,14 @@ if(smallDisplay.matches) {
 	headerSmallPhoneAdaptation(headerPhonesElements);
 }
 
-
-// 
-//      const productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
-//       productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'];
-
 mainSlider.mount();
 
-
-// productsSlider.on( 'pagination:mounted', function ( data ) {
-//     data.list.classList.add( 'splide__pagination--custom' );
+productsSlider.on( 'pagination:mounted', function ( data ) {
+    data.list.classList.add( 'splide__pagination--custom' );
   
-//     data.items.forEach( function ( item) {
-//       item.button.textContent = productsButtons[item.page];
-//     } );
-//   } );
+    data.items.forEach( function ( item) {
+      item.button.textContent = productsButtons[item.page];
+    } );
+  } );
   
-
-// productsSlider.mount();
+productsSlider.mount();

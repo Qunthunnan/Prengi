@@ -156,4 +156,19 @@
             margin-top: 10px;
         }
     }
+
+    .splide[aria-label="mainSlider"] {
+        .splide__pagination {
+            padding: 0;
+        }
+        .splide__arrow {
+            &--prev {
+                left: 0em;
+            }
+            &--next {
+                right: 0em;
+            }
+        }
+    }
 }
+

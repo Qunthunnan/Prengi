@@ -68,7 +68,7 @@
     }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1399px) {
     .header {
         &__country {
             margin-top: 10px;
@@ -124,6 +124,7 @@
         &__mobile-button {
             display: flex;
             z-index: 4;
+            outline: none;
         }
         &_menu-active {
             height: 70vh;
@@ -169,6 +170,20 @@
         }
         &__country {
             display: none;
+        }
+    }
+}
+
+@media(max-width: 360px) {
+    .header {
+        &_menu-active {
+            .header__wrapper {
+                .header__mobile-menu {
+                    &-item {
+                        font-size: 11px;
+                    }
+                }
+            }
         }
     }
 }
