@@ -1,0 +1,40 @@
+.servers {
+    min-height: 580px;
+    padding: 80px 0px 0px 0px;
+    background: url('../img/servers/serversBg.jpg') center/cover no-repeat;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__block {
+        width: 43%;
+        margin-top: 128px;
+        color: white;
+        &:first-child {
+            text-align: right;
+        }
+        &-title {
+            font-size: 30px;
+            font-weight: 900;
+        }
+        &-text {
+            font-size: 18px;
+            font-weight: 300;
+        }
+    }
+}
+
+@media (max-width: 767px){
+    .servers {
+        padding: 60px 0px 0px 0px;
+        &__block {
+            width: 41%;
+            &-title {
+                font-size: 25px;
+            }
+            &-text {
+                font-size: 16px;
+            }
+        }
+    }
+}
