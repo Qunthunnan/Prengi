@@ -27,6 +27,33 @@ function headerNormalPhoneAdaptation (headerPhonesElements, headerPhones) {
 	});
 }
 
+// function modalOpenClose(element) {
+// 	// debugger;
+// 	console.dir(element);
+// 	console.dir(getComputedStyle(element));
+// 	let elementStyles = getComputedStyle(element);
+// 	console.dir(elementStyles);
+// 	if(elementStyles.opacity == '0') {
+// 		element.style.display = 'block';
+// 		setInterval(()=> {
+// 			if(element.style.opacity >= 1) {
+// 				clearInterval();
+// 				return;
+// 			}
+// 			element.style.opacity += 0.01;
+// 		}, 10);
+// 	} else {
+// 		setInterval(()=>{
+// 			if(element.style.opacity <= 0 ) {
+// 				element.style.display = 'none';
+// 				clearInterval();
+// 				return;
+// 			}
+// 			element.style.opacity -= 0.01;
+// 		},10);
+// 	}
+// }
+
 const headerPhonesElements = document.querySelectorAll('.header__country-text-tel'),
 	  headerPhones = [];
 headerPhonesElements.forEach((item, i) => {
@@ -41,8 +68,30 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 	  sliderContainer = document.querySelector('.main__slider-container');
 	  hammer = new Hammer(sliderContainer),
 	  productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
-      productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'];
+      productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'],
+	  modal = document.querySelector('.modal'),
+	  modalOverlay = document.querySelector('.modal__overlay'),
+	  singUpBtns = document.querySelectorAll('.button_singUp'),
+	  modalCloseBtn = modal.querySelector('.modal__window-close');
 
+
+
+singUpBtns.forEach((i)=>{
+	i.addEventListener('click', () => {
+		// modalOpenClose(modal);
+		modal.classList.toggle('modal_active');
+	});
+});
+
+modalCloseBtn.addEventListener('click', ()=> {
+	// modalOpenClose(modal);
+	modal.classList.remove('modal_active');
+});
+
+modalOverlay.addEventListener('click', ()=> {
+	// modalOpenClose(modal);
+	modal.classList.remove('modal_active');
+})
 
 hammer.on('swiperight', function () {
 	mainSlider.go('<');

@@ -11,6 +11,33 @@
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
+
+    <div class="modal">
+        <div class="modal__overlay">
+        </div>
+        <div class="modal__window">
+            <button class="modal__window-close">&#9587</button>
+            <form action="#" class="modal__form">
+                <div class="modal__form-name">
+                    <label for="name">Ваше ім'я</label>
+                    <input name="name" type="text">
+                </div>
+                
+                <div class="modal__form-phone">
+                    <label for="phone">Ваш номер телефону</label>
+                    <input name="phone">
+                </div>
+                
+                <button class="modal__form-submit">Спробувати</button>
+                
+                <div class="modal__form-policy">
+                    <input required type="checkbox" name="policy">
+                    <label for="policy">Я згоден(на) з <a href="#">політикою конфіденційності</a></label>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <header class="header">
         <button class="header__mobile-button">
             <span></span>
@@ -124,7 +151,7 @@
                         <h1 class="main__title">Керуйте своїм бізнесом через смартфон</h1>
                         <h2 class="main__subtitle"><b>PRENGI</b> - Платформа для прозорого керування бізнесом</h2>
                     </div>
-                    <button class="button button_main">Отримати доступ</button>
+                    <button class="button button_main button_singUp">Отримати доступ</button>
                 </div>
             </div>
         </section>
@@ -275,7 +302,7 @@
     <section class="startWork">
         <img class="startWork__title-image" src="icons/startWork/startWork.jpg"></img alt="startWork">
         <h2 class="title title_startWork">Розпочати дуже просто!<br>Треба отримати доступ и почати роботу!</h2>
-        <button class="button button_startWork">Зв'язатись з нами</button>
+        <button class="button button_startWork button_singUp">Зв'язатись з нами</button>
     </section>
 
     <footer class="footer">

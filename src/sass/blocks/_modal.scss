@@ -1,0 +1,91 @@
+.modal {
+    // opacity: 0;
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    &__overlay {
+        cursor: pointer;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    &__window {
+        padding: 50px 0;
+        position: fixed;
+        left: 50%;
+        top: 12%;
+        transform: translateX(-50%);
+        height: 510px;
+        width: 407px;
+        background-color: white;
+        border-radius: 9px;
+        &-close {
+            position: absolute;
+            border: none;
+            background-color: #00c2f0;
+            display: block;
+            height: 40px;
+            width: 40px;
+            border-radius: 5px;
+            right: 10px;
+            top: 8px;
+        }
+    }
+    &__form-name, &__form-phone {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        width: 300px;
+        margin-top: 30px;
+        input {
+            width: inherit;
+            display: block;
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid black;
+            caret-color: #00c2f0;
+            padding: 0px 10px;
+
+            &:focus {
+                border: 1px solid #00c2f0;
+                outline: none;
+            }
+        }
+    }
+
+    &__form-submit {
+        outline: none;
+        border: none;
+        background-color: #00c2f0;
+        height: 70px;
+        width: 150px;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: block;
+        margin: 0px auto;
+        margin-top: 60px;
+    }
+
+    &__form-policy {
+        width: 80%;
+        margin: 0px auto;
+        margin-top: 15px;
+        display: flex;
+        align-items: flex-start;
+        input {
+            margin-top: 5px;
+        }
+        label {
+            margin-left: 10px;
+        }
+    }
+    &_active {
+        display: block;
+    }
+}
