@@ -55,6 +55,16 @@
             }
         }
     }
+    
+    .iti {
+        width: inherit;
+    }
+
+    &__form-phone {
+        input {
+            padding: 0 10px 0 50px;
+        }
+    }
 
     &__form-submit {
         outline: none;

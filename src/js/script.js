@@ -1,3 +1,5 @@
+// "use strict";
+
 function phoneSmallEditing(phone) {
 	const availableChars = ['0','1','2','3','4','5','6','7','8','9','(',')','+'];
 	if(typeof(phone) == 'string') {
@@ -72,8 +74,43 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 	  modal = document.querySelector('.modal'),
 	  modalOverlay = document.querySelector('.modal__overlay'),
 	  singUpBtns = document.querySelectorAll('.button_singUp'),
-	  modalCloseBtn = modal.querySelector('.modal__window-close');
+	  modalCloseBtn = modal.querySelector('.modal__window-close'),
+	  phoneInput = document.querySelector('.modal__form-phone input');
 
+	  const countryData = window.intlTelInputGlobals.getCountryData();
+
+
+	  let iti = window.intlTelInput(phoneInput, {
+		utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.13/build/js/utils.js',
+		initialCountry: 'auto',
+	});
+
+	phoneInput.addEventListener('input', function () {
+		debugger;
+		let phoneNumber = phoneInput.value;
+		if(libphonenumber.validatePhoneNumberLength(phoneNumber) == 'TOO_LONG') {
+			phoneInput.value = phoneNumber.slice(0, -1);
+		} else {
+			let formattedNumber = formatPhoneNumber(phoneNumber);
+			phoneInput.value = formattedNumber;
+		}
+	});
+	
+	
+
+	function formatPhoneNumber(phoneNumber) {
+		try {
+			const parsedNumber = libphonenumber.parsePhoneNumber(iti.getNumber());
+	
+			const formattedNumber = parsedNumber.formatInternational();
+	
+			return formattedNumber;
+		} catch (error) {
+			console.error(error);
+			return phoneNumber.replace(/[^0-9+() -]/, '');
+		}
+	}
+	
 
 
 singUpBtns.forEach((i)=>{

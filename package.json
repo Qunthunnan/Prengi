@@ -25,5 +25,9 @@
     "> 1%",
     "maintained node versions",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "inputmask": "^5.0.8",
+    "libphonenumber-js": "^1.10.49"
+  }
 }
