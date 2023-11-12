@@ -29,32 +29,65 @@ function headerNormalPhoneAdaptation (headerPhonesElements, headerPhones) {
 	});
 }
 
-// function modalOpenClose(element) {
-// 	// debugger;
-// 	console.dir(element);
-// 	console.dir(getComputedStyle(element));
-// 	let elementStyles = getComputedStyle(element);
-// 	console.dir(elementStyles);
-// 	if(elementStyles.opacity == '0') {
-// 		element.style.display = 'block';
-// 		setInterval(()=> {
-// 			if(element.style.opacity >= 1) {
-// 				clearInterval();
-// 				return;
-// 			}
-// 			element.style.opacity += 0.01;
-// 		}, 10);
-// 	} else {
-// 		setInterval(()=>{
-// 			if(element.style.opacity <= 0 ) {
-// 				element.style.display = 'none';
-// 				clearInterval();
-// 				return;
-// 			}
-// 			element.style.opacity -= 0.01;
-// 		},10);
-// 	}
-// }
+function formatPhoneNumber(phoneNumber) {
+	try {
+		const parsedNumber = libphonenumber.parsePhoneNumber(iti.getNumber());
+		const formattedNumber = parsedNumber.formatInternational();
+		return formattedNumber;
+	} catch (error) {
+		return phoneNumber.replace(/[^0-9+() -]/, '');
+	}
+}
+
+let closeInId,
+	openInId;
+
+function modalOpen(element) {
+	let opacity = +window.getComputedStyle(element).opacity;
+	let display = window.getComputedStyle(element).display;
+	if(opacity >= 1) {
+		element.style.opacity = 1;
+		clearInterval(openInId);
+		openInId = null;
+		return undefined;
+	}
+	opacity += 0.03;
+	element.style.opacity = opacity;
+}
+
+function modalClose(element) {
+	let opacity = +window.getComputedStyle(element).opacity;
+	let display = window.getComputedStyle(element).display;
+	if(opacity <= 0 ) {	
+		element.style.display = 'none';
+		element.style.opacity = 0;
+		clearInterval(closeInId);
+		closeInId = null;
+		return undefined;
+	}
+	opacity -= 0.03;	
+	element.style.opacity = opacity;
+}
+
+function modalOpenClose(element) {
+	let opacity = +window.getComputedStyle(element).opacity;
+	let display = window.getComputedStyle(element).display;
+	if(display == 'none') {
+		element.style.display = 'block';
+		if(!openInId) {
+			openInId = setInterval(modalOpen, 10, element);
+		}
+		
+	} else {
+		if(!closeInId) {
+			closeInId = setInterval(modalClose, 10, element);
+		}
+	}
+}
+function modalSwitchDone(element) {
+	modalOpenClose(element.querySelector('.modal__window'));
+	modalOpenClose(element.querySelector('.modal__window-done'));
+}
 
 const headerPhonesElements = document.querySelectorAll('.header__country-text-tel'),
 	  headerPhones = [];
@@ -75,59 +108,151 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 	  modalOverlay = document.querySelector('.modal__overlay'),
 	  singUpBtns = document.querySelectorAll('.button_singUp'),
 	  modalCloseBtn = modal.querySelector('.modal__window-close'),
-	  phoneInput = document.querySelector('.modal__form-phone input');
-
-	  const countryData = window.intlTelInputGlobals.getCountryData();
-
+	  nameInput = modal.querySelector('.modal__form-name input');
+	  phoneInput = document.querySelector('.modal__form-phone input'),
+	  modalSubmitBtn = document.querySelector('.modal__form-submit'),
+	  policyChbox = modal.querySelector('.modal__form-policy input');
 
 	  let iti = window.intlTelInput(phoneInput, {
 		utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.13/build/js/utils.js',
 		initialCountry: 'auto',
 	});
 
-	phoneInput.addEventListener('input', function () {
-		debugger;
-		let phoneNumber = phoneInput.value;
-		if(libphonenumber.validatePhoneNumberLength(phoneNumber) == 'TOO_LONG') {
-			phoneInput.value = phoneNumber.slice(0, -1);
-		} else {
-			let formattedNumber = formatPhoneNumber(phoneNumber);
-			phoneInput.value = formattedNumber;
+	function inputValidation(input) {
+		if(input.name == 'name') {
+			const formatName = /^[\s]*[^\!\@\#\$\%\^\&\*\=\+\~\`\{\}\[\]\\\|\'\"\;\:\/\?\.\>\,\<]*$/;
+			const minNameLength = 2;
+			const maxNameLength = 255;
+			if(input.value.length >= minNameLength) {
+				if(input.value.length <= maxNameLength) {
+					if(formatName.test(input.value)) {
+						deleteError(input);
+						return true;
+					} else {
+						showErrors(input, 'Спеціальні символи, які можна використати: ( ) - _');
+						return false;
+					}
+				} else {
+					showErrors(input, 'Максимальна довжина імені: 255');
+					return false;
+				}
+			} else {
+				showErrors(input, 'Мінімальна довжина імені: 2');
+				return false;
+			}
 		}
-	});
-	
-	
 
-	function formatPhoneNumber(phoneNumber) {
-		try {
-			const parsedNumber = libphonenumber.parsePhoneNumber(iti.getNumber());
-	
-			const formattedNumber = parsedNumber.formatInternational();
-	
-			return formattedNumber;
-		} catch (error) {
-			console.error(error);
-			return phoneNumber.replace(/[^0-9+() -]/, '');
+		if(input.name == 'phone') {
+			if(libphonenumber.parsePhoneNumber(input.value).isValid()) {
+				debugger;
+				deleteError(input);
+				return true;
+			}
+			debugger;
+			showErrors(input, 'Перевірте, чи правильно написан номер телефону');
+			return false;
+		}
+
+		if(input.name == 'policy') {
+			if(input.checked) {
+				deleteError(input);
+				return true
+			} else {
+				showErrors(input, 'Потрібна ваша згода');
+			}
 		}
 	}
-	
+
+	function showErrors(input, error) {
+		if(!!input.parentNode.querySelector('.modal__form-error') == false) {
+			const errorElement = document.createElement('label');
+			errorElement.htmlFor = input.id;
+			errorElement.className = 'modal__form-error';
+			errorElement.innerText = error;
+			input.parentNode.append(errorElement);
+		} else {
+			if(input.parentNode.querySelector('.modal__form-error').innerText == error) {
+			} else {
+				deleteError(input);
+				const errorElement = document.createElement('label');
+				errorElement.htmlFor = input.id;
+				errorElement.className = 'modal__form-error';
+				errorElement.innerText = error;
+				input.parentNode.append(errorElement);
+			}
+		}
+
+		// nameInput = modal.querySelector('.modal__form-name input');
+		// nameInput.addEventListener('input', (e)=> {
+		// 	inputValidation(e.target);
+		// });
+		// console.dir(input.parentNode);
+
+		//якщо не існує
+			//записуємо нову
+		//|
+			//така сама? 
+				//нічого не робим
+			//| стираємо стару, запиуємо нову
+	}
+
+	function deleteError(input) {
+		if(!!input.parentNode.querySelector('.modal__form-error')) {
+			input.parentNode.querySelector('.modal__form-error').remove();
+		}
+	}
+
+	phoneInput.addEventListener('input', function (e) {
+		let phoneNumber = phoneInput.value;
+		if(libphonenumber.validatePhoneNumberLength(phoneNumber) != 'TOO_LONG') {
+			let formattedNumber = formatPhoneNumber(phoneNumber);
+			phoneInput.value = formattedNumber;
+		} else {
+			phoneInput.value = phoneNumber.slice(0, -1);
+		}
+		inputValidation(e.target);
+	});
+
+	nameInput.addEventListener('input', (e)=> {
+		inputValidation(e.target);
+	});
+
+	policyChbox.addEventListener('input', (e)=> {
+		inputValidation(e.target);
+	});
+
+	modalSubmitBtn.addEventListener('click', (e)=>{
+		debugger;
+		e.preventDefault();
+		const nameValidationResult = inputValidation(nameInput),
+			 phoneValidationResult = inputValidation(phoneInput),
+			 policyValidationResult = inputValidation(policyChbox);
+
+		if(nameValidationResult && phoneValidationResult && policyValidationResult) {
+			const userData = {
+				userFirstName: nameInput.value,
+				userPhone: libphonenumber.parsePhoneNumber(phoneInput.value).number
+			}
+			console.dir(userData);
+			modalSwitchDone(modal);
+		} else {
+			console.log('No validation((');
+		}
+	});
 
 
 singUpBtns.forEach((i)=>{
 	i.addEventListener('click', () => {
-		// modalOpenClose(modal);
-		modal.classList.toggle('modal_active');
+		modalOpenClose(modal);
 	});
 });
 
 modalCloseBtn.addEventListener('click', ()=> {
-	// modalOpenClose(modal);
-	modal.classList.remove('modal_active');
+	modalOpenClose(modal);
 });
 
 modalOverlay.addEventListener('click', ()=> {
-	// modalOpenClose(modal);
-	modal.classList.remove('modal_active');
+	modalOpenClose(modal);
 })
 
 hammer.on('swiperight', function () {
