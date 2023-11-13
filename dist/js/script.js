@@ -42,51 +42,78 @@ function formatPhoneNumber(phoneNumber) {
 let closeInId,
 	openInId;
 
-function modalOpen(element) {
+function modalOpen(element, action) {
 	let opacity = +window.getComputedStyle(element).opacity;
-	let display = window.getComputedStyle(element).display;
 	if(opacity >= 1) {
 		element.style.opacity = 1;
 		clearInterval(openInId);
 		openInId = null;
+		if(action != undefined) {
+			action();
+		}
 		return undefined;
 	}
 	opacity += 0.03;
 	element.style.opacity = opacity;
 }
 
-function modalClose(element) {
+function modalClose(element, action) {
 	let opacity = +window.getComputedStyle(element).opacity;
-	let display = window.getComputedStyle(element).display;
 	if(opacity <= 0 ) {	
 		element.style.display = 'none';
 		element.style.opacity = 0;
 		clearInterval(closeInId);
 		closeInId = null;
+		if(action != undefined) {
+			action();
+		}
 		return undefined;
 	}
 	opacity -= 0.03;	
 	element.style.opacity = opacity;
 }
 
-function modalOpenClose(element) {
-	let opacity = +window.getComputedStyle(element).opacity;
+function modalOpenClose(element, action) {
 	let display = window.getComputedStyle(element).display;
 	if(display == 'none') {
 		element.style.display = 'block';
 		if(!openInId) {
-			openInId = setInterval(modalOpen, 10, element);
+			if(action != undefined) {
+				openInId = setInterval(modalOpen, 10, element, action);
+			} else {
+				openInId = setInterval(modalOpen, 10, element);
+			}
 		}
 		
 	} else {
 		if(!closeInId) {
-			closeInId = setInterval(modalClose, 10, element);
+			if(action != undefined) {
+				closeInId = setInterval(modalClose, 10, element, action);
+			} else {
+				closeInId = setInterval(modalClose, 10, element);
+			}
 		}
 	}
 }
 function modalSwitchDone(element) {
 	modalOpenClose(element.querySelector('.modal__window'));
 	modalOpenClose(element.querySelector('.modal__window-done'));
+}
+
+function modalSwitchToAnother(modalWindow) {
+	if(modalWindow.className == 'modal__window modal__window-done') {
+		const anoterWindow = modalWindow.parentNode.querySelector('.modal__window');
+		modalWindow.style.display = 'none';
+		modalWindow.style.opacity = 0;
+		anoterWindow.style.display = 'block';
+		anoterWindow.style.opacity = 1;
+	} else {
+		const anoterWindow = modalWindow.parentNode.querySelector('modal__window modal__window-done');
+		modalWindow.style.display = 'none';
+		modalWindow.style.opacity = 0;
+		anoterWindow.style.display = 'block';
+		anoterWindow.style.opacity = 1;
+	}
 }
 
 const headerPhonesElements = document.querySelectorAll('.header__country-text-tel'),
@@ -107,16 +134,17 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 	  modal = document.querySelector('.modal'),
 	  modalOverlay = document.querySelector('.modal__overlay'),
 	  singUpBtns = document.querySelectorAll('.button_singUp'),
-	  modalCloseBtn = modal.querySelector('.modal__window-close'),
+	  modalCloseBtn = modal.querySelectorAll('.modal__window-close'),
 	  nameInput = modal.querySelector('.modal__form-name input');
 	  phoneInput = document.querySelector('.modal__form-phone input'),
 	  modalSubmitBtn = document.querySelector('.modal__form-submit'),
 	  policyChbox = modal.querySelector('.modal__form-policy input');
 
-	  let iti = window.intlTelInput(phoneInput, {
+let iti = window.intlTelInput(phoneInput, {
 		utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.13/build/js/utils.js',
 		initialCountry: 'auto',
-	});
+	}),
+	users = [];
 
 	function inputValidation(input) {
 		if(input.name == 'name') {
@@ -143,15 +171,19 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 		}
 
 		if(input.name == 'phone') {
-			if(libphonenumber.parsePhoneNumber(input.value).isValid()) {
-				debugger;
-				deleteError(input);
-				return true;
+			try {
+				if(libphonenumber.parsePhoneNumber(input.value).isValid()) {
+					deleteError(input);
+					return true;
+				} else {
+					showErrors(input, 'Перевірте, чи правильно написали номер телефону');
+					return false;
+				}
+			} catch (error) {
+				showErrors(input, 'Перевірте, чи правильно написали номер телефону');
+				return false;
+				}
 			}
-			debugger;
-			showErrors(input, 'Перевірте, чи правильно написан номер телефону');
-			return false;
-		}
 
 		if(input.name == 'policy') {
 			if(input.checked) {
@@ -161,94 +193,88 @@ const smallDisplay = window.matchMedia('(max-width: 991px)'),
 				showErrors(input, 'Потрібна ваша згода');
 			}
 		}
+		return false;
 	}
 
-	function showErrors(input, error) {
-		if(!!input.parentNode.querySelector('.modal__form-error') == false) {
+function showErrors(input, error) {
+	if(!!input.parentNode.querySelector('.modal__form-error') == false) {
+		const errorElement = document.createElement('label');
+		errorElement.htmlFor = input.id;
+		errorElement.className = 'modal__form-error';
+		errorElement.innerText = error;
+		input.parentNode.append(errorElement);
+	} else {
+		if(input.parentNode.querySelector('.modal__form-error').innerText == error) {
+		} else {
+			deleteError(input);
 			const errorElement = document.createElement('label');
 			errorElement.htmlFor = input.id;
 			errorElement.className = 'modal__form-error';
 			errorElement.innerText = error;
 			input.parentNode.append(errorElement);
-		} else {
-			if(input.parentNode.querySelector('.modal__form-error').innerText == error) {
-			} else {
-				deleteError(input);
-				const errorElement = document.createElement('label');
-				errorElement.htmlFor = input.id;
-				errorElement.className = 'modal__form-error';
-				errorElement.innerText = error;
-				input.parentNode.append(errorElement);
-			}
-		}
-
-		// nameInput = modal.querySelector('.modal__form-name input');
-		// nameInput.addEventListener('input', (e)=> {
-		// 	inputValidation(e.target);
-		// });
-		// console.dir(input.parentNode);
-
-		//якщо не існує
-			//записуємо нову
-		//|
-			//така сама? 
-				//нічого не робим
-			//| стираємо стару, запиуємо нову
-	}
-
-	function deleteError(input) {
-		if(!!input.parentNode.querySelector('.modal__form-error')) {
-			input.parentNode.querySelector('.modal__form-error').remove();
 		}
 	}
+}
 
-	phoneInput.addEventListener('input', function (e) {
-		let phoneNumber = phoneInput.value;
-		if(libphonenumber.validatePhoneNumberLength(phoneNumber) != 'TOO_LONG') {
-			let formattedNumber = formatPhoneNumber(phoneNumber);
-			phoneInput.value = formattedNumber;
-		} else {
-			phoneInput.value = phoneNumber.slice(0, -1);
+function deleteError(input) {
+	if(!!input.parentNode.querySelector('.modal__form-error')) {
+		input.parentNode.querySelector('.modal__form-error').remove();
+	}
+}
+
+phoneInput.addEventListener('input', function (e) {
+	let phoneNumber = phoneInput.value;
+	let formattedNumber = formatPhoneNumber(phoneNumber);
+	phoneInput.value = formattedNumber;
+	inputValidation(e.target);
+});
+
+nameInput.addEventListener('input', (e)=> {
+	inputValidation(e.target);
+});
+
+policyChbox.addEventListener('input', (e)=> {
+	inputValidation(e.target);
+});
+
+modalSubmitBtn.addEventListener('click', (e)=>{
+	e.preventDefault();
+	const nameValidationResult = inputValidation(nameInput),
+			phoneValidationResult = inputValidation(phoneInput),
+			policyValidationResult = inputValidation(policyChbox);
+
+	if(nameValidationResult && phoneValidationResult && policyValidationResult) {
+		const userData = {
+			userFirstName: nameInput.value,
+			userPhone: libphonenumber.parsePhoneNumber(phoneInput.value).number
 		}
-		inputValidation(e.target);
-	});
-
-	nameInput.addEventListener('input', (e)=> {
-		inputValidation(e.target);
-	});
-
-	policyChbox.addEventListener('input', (e)=> {
-		inputValidation(e.target);
-	});
-
-	modalSubmitBtn.addEventListener('click', (e)=>{
-		debugger;
-		e.preventDefault();
-		const nameValidationResult = inputValidation(nameInput),
-			 phoneValidationResult = inputValidation(phoneInput),
-			 policyValidationResult = inputValidation(policyChbox);
-
-		if(nameValidationResult && phoneValidationResult && policyValidationResult) {
-			const userData = {
-				userFirstName: nameInput.value,
-				userPhone: libphonenumber.parsePhoneNumber(phoneInput.value).number
-			}
-			console.dir(userData);
-			modalSwitchDone(modal);
-		} else {
-			console.log('No validation((');
-		}
-	});
+		users.push(userData);
+		console.dir(users);
+		modalSwitchDone(modal);
+		document.querySelector('.modal__form').reset();
+	} else {
+		console.log('No validation((');
+	}
+});
 
 
-singUpBtns.forEach((i)=>{
-	i.addEventListener('click', () => {
+singUpBtns.forEach((item)=>{
+	item.addEventListener('click', () => {
 		modalOpenClose(modal);
 	});
 });
 
-modalCloseBtn.addEventListener('click', ()=> {
-	modalOpenClose(modal);
+modalCloseBtn.forEach((item)=>{
+	item.addEventListener('click', (e)=> {
+		if(e.target.parentNode.className == 'modal__window modal__window-done') {
+			modalOpenClose(modal, ()=>{
+				modalSwitchToAnother(e.target.parentNode);
+			});
+			
+		} else {
+			modalOpenClose(modal);
+		}
+	});
 });
 
 modalOverlay.addEventListener('click', ()=> {
