@@ -39,9 +39,6 @@ function formatPhoneNumber(phoneNumber) {
 	}
 }
 
-let closeInId,
-	openInId;
-
 function modalOpen(element, action) {
 	let opacity = +window.getComputedStyle(element).opacity;
 	if(opacity >= 1) {
@@ -116,85 +113,55 @@ function modalSwitchToAnother(modalWindow) {
 	}
 }
 
-const headerPhonesElements = document.querySelectorAll('.header__country-text-tel'),
-	  headerPhones = [];
-headerPhonesElements.forEach((item, i) => {
-	headerPhones[i] = item.innerText;
-});
-const smallDisplay = window.matchMedia('(max-width: 991px)'),
-	  normalDisplay = window.matchMedia('(min-width: 992px)'),
-	  mainSlider = new Splide( '.splide[aria-label="mainSlider"]', {
-		drag: false
-	  }),
-	  mobileHeaderButton = document.querySelector('.header__mobile-button'),
-	  sliderContainer = document.querySelector('.main__slider-container');
-	  hammer = new Hammer(sliderContainer),
-	  productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
-      productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'],
-	  modal = document.querySelector('.modal'),
-	  modalOverlay = document.querySelector('.modal__overlay'),
-	  singUpBtns = document.querySelectorAll('.button_singUp'),
-	  modalCloseBtn = modal.querySelectorAll('.modal__window-close'),
-	  nameInput = modal.querySelector('.modal__form-name input');
-	  phoneInput = document.querySelector('.modal__form-phone input'),
-	  modalSubmitBtn = document.querySelector('.modal__form-submit'),
-	  policyChbox = modal.querySelector('.modal__form-policy input');
-
-let iti = window.intlTelInput(phoneInput, {
-		utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.13/build/js/utils.js',
-		initialCountry: 'auto',
-	}),
-	users = [];
-
-	function inputValidation(input) {
-		if(input.name == 'name') {
-			const formatName = /^[\s]*[^\!\@\#\$\%\^\&\*\=\+\~\`\{\}\[\]\\\|\'\"\;\:\/\?\.\>\,\<]*$/;
-			const minNameLength = 2;
-			const maxNameLength = 255;
-			if(input.value.length >= minNameLength) {
-				if(input.value.length <= maxNameLength) {
-					if(formatName.test(input.value)) {
-						deleteError(input);
-						return true;
-					} else {
-						showErrors(input, 'Спеціальні символи, які можна використати: ( ) - _');
-						return false;
-					}
-				} else {
-					showErrors(input, 'Максимальна довжина імені: 255');
-					return false;
-				}
-			} else {
-				showErrors(input, 'Мінімальна довжина імені: 2');
-				return false;
-			}
-		}
-
-		if(input.name == 'phone') {
-			try {
-				if(libphonenumber.parsePhoneNumber(input.value).isValid()) {
+function inputValidation(input) {
+	if(input.name == 'name') {
+		const formatName = /^[\s]*[^\!\@\#\$\%\^\&\*\=\+\~\`\{\}\[\]\\\|\'\"\;\:\/\?\.\>\,\<]*$/;
+		const minNameLength = 2;
+		const maxNameLength = 255;
+		if(input.value.length >= minNameLength) {
+			if(input.value.length <= maxNameLength) {
+				if(formatName.test(input.value)) {
 					deleteError(input);
 					return true;
 				} else {
-					showErrors(input, 'Перевірте, чи правильно написали номер телефону');
+					showErrors(input, 'Спеціальні символи, які можна використати:\n ( ) - _');
 					return false;
 				}
-			} catch (error) {
+			} else {
+				showErrors(input, 'Максимальна довжина імені: 255');
+				return false;
+			}
+		} else {
+			showErrors(input, 'Мінімальна довжина імені: 2');
+			return false;
+		}
+	}
+
+	if(input.name == 'phone') {
+		try {
+			if(libphonenumber.parsePhoneNumber(input.value).isValid()) {
+				deleteError(input);
+				return true;
+			} else {
 				showErrors(input, 'Перевірте, чи правильно написали номер телефону');
 				return false;
-				}
 			}
-
-		if(input.name == 'policy') {
-			if(input.checked) {
-				deleteError(input);
-				return true
-			} else {
-				showErrors(input, 'Потрібна ваша згода');
+		} catch (error) {
+			showErrors(input, 'Перевірте, чи правильно написали номер телефону');
+			return false;
 			}
 		}
-		return false;
+
+	if(input.name == 'policy') {
+		if(input.checked) {
+			deleteError(input);
+			return true
+		} else {
+			showErrors(input, 'Потрібна ваша згода');
+		}
 	}
+	return false;
+}
 
 function showErrors(input, error) {
 	if(!!input.parentNode.querySelector('.modal__form-error') == false) {
@@ -221,6 +188,39 @@ function deleteError(input) {
 		input.parentNode.querySelector('.modal__form-error').remove();
 	}
 }
+
+const headerPhonesElements = document.querySelectorAll('.header__country-text-tel'),
+	  headerPhones = [];
+headerPhonesElements.forEach((item, i) => {
+	headerPhones[i] = item.innerText;
+});
+const smallDisplay = window.matchMedia('(max-width: 991px)'),
+	  normalDisplay = window.matchMedia('(min-width: 992px)'),
+	  mainSlider = new Splide( '.splide[aria-label="mainSlider"]', {
+		drag: true,
+		useIndex: true
+	  }),
+	  mobileHeaderButton = document.querySelector('.header__mobile-button'),
+	  sliderContainer = document.querySelector('.main__slider-container');
+	  productsSlider = new Splide('.splide[aria-label="productsSlider"]'),
+      productsButtons = ['Prengi Production', 'Prengi FMC', 'Prengi Mallz', 'Retail Prengi', 'Logistic Prengi', 'IT Prengi HR'],
+	  modal = document.querySelector('.modal'),
+	  modalOverlay = document.querySelector('.modal__overlay'),
+	  singUpBtns = document.querySelectorAll('.button_singUp'),
+	  modalCloseBtn = modal.querySelectorAll('.modal__window-close'),
+	  nameInput = modal.querySelector('.modal__form-name input');
+	  phoneInput = document.querySelector('.modal__form-phone input'),
+	  modalSubmitBtn = document.querySelector('.modal__form-submit'),
+	  policyChbox = modal.querySelector('.modal__form-policy input');
+
+let iti = window.intlTelInput(phoneInput, {
+		utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.13/build/js/utils.js',
+		initialCountry: 'auto',
+	}),
+	users = [],
+	closeInId,
+	openInId;
+
 
 phoneInput.addEventListener('input', function (e) {
 	let phoneNumber = phoneInput.value;
@@ -280,14 +280,6 @@ modalCloseBtn.forEach((item)=>{
 modalOverlay.addEventListener('click', ()=> {
 	modalOpenClose(modal);
 })
-
-hammer.on('swiperight', function () {
-	mainSlider.go('<');
-});
-
-hammer.on('swipeleft', function () {
-    mainSlider.go('>');
-});
 
 smallDisplay.addEventListener('change', (e)=> {
 	if (e.matches) {

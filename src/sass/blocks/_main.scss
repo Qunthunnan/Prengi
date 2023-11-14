@@ -8,7 +8,6 @@
         position: absolute;
         top: 39px;
         width: 100%;
-        z-index: 2;
     }
     &__head {
         height: 65px;
@@ -49,9 +48,15 @@
         font-size: 24px;
         color: white;
     }
+
+    &__head-logo, &__head-menu-item, &__title, &__subtitle, .button_main {
+        position: relative;
+        z-index: 2;
+    }
 }
 
 .splide[aria-label="mainSlider"] {
+    z-index: 2;
     .splide__slide {
         img {
             object-fit: cover;
@@ -114,6 +119,12 @@
 
 @media (max-width: 767px) {
     .main {
+        &__head {
+            &-logo {
+                object-fit: contain;
+                width: 120px;
+            }
+        }
         &__text-content-wrapper {
             .container {
                 max-width: 100%;
@@ -139,7 +150,6 @@
             &-logo {
                 display: block;
                 width: 90px;
-                object-fit: contain;
             }
             &-menu {
                 display: none;
