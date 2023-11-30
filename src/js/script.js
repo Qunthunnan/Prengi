@@ -114,7 +114,7 @@ function modalSwitchToAnother(modalWindow) {
 }
 
 function inputValidation(input) {
-	if(input.name == 'name') {
+	if(input.name === 'name') {
 		const formatName = /^[\s]*[^\!\@\#\$\%\^\&\*\=\+\~\`\{\}\[\]\\\|\'\"\;\:\/\?\.\>\,\<]*$/;
 		const minNameLength = 2;
 		const maxNameLength = 255;
@@ -137,7 +137,7 @@ function inputValidation(input) {
 		}
 	}
 
-	if(input.name == 'phone') {
+	if(input.name === 'phone') {
 		try {
 			if(libphonenumber.parsePhoneNumber(input.value).isValid()) {
 				deleteError(input);
@@ -152,7 +152,7 @@ function inputValidation(input) {
 			}
 		}
 
-	if(input.name == 'policy') {
+	if(input.name === 'policy') {
 		if(input.checked) {
 			deleteError(input);
 			return true
