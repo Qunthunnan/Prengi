@@ -1,0 +1,30 @@
+
+
+@import 'libs/bootstrap-reboot.min';
+@import 'libs/bootstrap-grid.min';
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
+body {
+    position: relative;
+}
+
+@import 'blocks/modal';
+@import 'blocks/header';
+@import 'blocks/main';
+@import 'blocks/button';
+@import 'blocks/prengi';
+@import 'blocks/products';
+@import 'blocks/titles';
+@import 'blocks/advantages';
+@import 'blocks/servers';
+@import 'blocks/startWork';
+@import 'blocks/footer';
+@import 'blocks/empty';
