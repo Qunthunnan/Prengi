@@ -2,6 +2,16 @@
 import Splide from '@splidejs/splide';
 import intlTelInput from 'intl-tel-input';
 import parsePhoneNumber from 'libphonenumber-js'
+import {setLocale, LangWidget} from './localeWidget';
+const lang = document.documentElement.getAttribute('lang');
+const ditictionary = require('../ditictionary.json');
+
+setLocale();
+
+const localeWidget = new LangWidget({
+    uk: 'Українська',
+    en: 'English',
+});
 
 function phoneSmallEditing(phone) {
 	const availableChars = ['0','1','2','3','4','5','6','7','8','9','(',')','+'];
@@ -127,15 +137,15 @@ function inputValidation(input) {
 					deleteError(input);
 					return true;
 				} else {
-					showErrors(input, 'Спеціальні символи, які можна використати:\n ( ) - _');
+					showErrors(input, ditictionary['messagesNameSymbols'][lang]);
 					return false;
 				}
 			} else {
-				showErrors(input, 'Максимальна довжина імені: 255');
+				showErrors(input, ditictionary['messagesNameLengthMax'][lang]);
 				return false;
 			}
 		} else {
-			showErrors(input, 'Мінімальна довжина імені: 2');
+			showErrors(input, ditictionary['messagesNameLengthMin'][lang]);
 			return false;
 		}
 	}
@@ -146,11 +156,11 @@ function inputValidation(input) {
 				deleteError(input);
 				return true;
 			} else {
-				showErrors(input, 'Перевірте, чи правильно написали номер телефону');
+				showErrors(input, ditictionary['messagesNumber'][lang]);
 				return false;
 			}
 		} catch (error) {
-			showErrors(input, 'Перевірте, чи правильно написали номер телефону');
+			showErrors(input, ditictionary['messagesNumber'][lang]);
 			return false;
 			}
 		}
@@ -160,7 +170,7 @@ function inputValidation(input) {
 			deleteError(input);
 			return true
 		} else {
-			showErrors(input, 'Потрібна ваша згода');
+			showErrors(input, ditictionary['messagesPolicy'][lang]);
 		}
 	}
 	return false;

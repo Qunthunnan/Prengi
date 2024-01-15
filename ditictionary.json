@@ -48,12 +48,12 @@
         "en": "Manage your business through your smartphone"
     },
     "main__subtitle": {
-        "uk": "- Platform for transparent business management",
-        "en": "test"
+        "uk": " - Платформа для прозорого керування бізнесом",
+        "en": " -The platform for transparent business management"
     },
     "button_main": {
-        "uk": "Get access",
-        "en": "test"
+        "uk": "Отримати доступ",
+        "en": "Get access"
     },
     "prengi__info-block-text-Schedule": {
         "uk": "Нема оперативності у прийнятті рішень?",
@@ -145,7 +145,11 @@
     },
     "title_startWork2": {
         "uk": "Треба отримати доступ й почати роботу!",
-        "en": "Get access and get started!"
+        "en": "Get access and start!"
+    },
+    "button_singUp": {
+        "uk": "Отримати доступ",
+        "en": "Get access"
     },
     "footer__title-Company": {
         "uk": "Про компанію",
@@ -154,6 +158,10 @@
     "footer__menu-link-Tasks": {
         "uk": "Керування задачами",
         "en": "Task management"
+    },
+    "footer__title-Modules": {
+        "uk": "Модулі",
+        "en": "Modules"
     },
     "footer__menu-link-Customering": {
         "uk": "Обслуговування",
@@ -242,5 +250,37 @@
     "footer__text": {
         "uk": "© Prengi Ink. 2008-2017 Усі права захищені.",
         "en": "© Prengi Ink. 2008-2017 All rights reserved."
+    },
+    "empty__title": {
+        "uk": "Схоже, ця сторінка насправді не існує!",
+        "en": "Looks like this page doesn't actually exist!"
+    },
+    "empty__subtitle": {
+        "uk": "Тому, повернемось до перегляду минулої ",
+        "en": "Therefore, let's return to viewing the previous "
+    },
+    "empty__subtitle-Link": {
+        "uk": "сторінки",
+        "en": "page"
+    },
+    "messagesNameSymbols": {
+        "uk": "Спеціальні символи, які можна використати:\n ( ) - _",
+        "en": "Special characters that can be used:\n ( ) - _"
+    },
+    "messagesNameLengthMax": {
+        "uk": "Максимальна довжина імені: 255",
+        "en": "Maximum name length: 255"
+    },
+    "messagesNameLengthMin": {
+        "uk": "Мінімальна довжина імені: 2",
+        "en": "Minimum name length: 2"
+    },
+    "messagesNumber": {
+        "uk": "Перевірте, чи правильно написали номер телефону",
+        "en": "Check if you have written the phone number correctly"
+    },
+    "messagesPolicy": {
+        "uk": "Потрібна ваша згода",
+        "en": "Your consent is required"
     }
 }
