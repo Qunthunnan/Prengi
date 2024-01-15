@@ -1,0 +1,246 @@
+{
+    "labelName": {
+        "uk": "Ваше ім'я",
+        "en": "Your name"
+    },
+    "labelNumber": {
+        "uk": "Ваш номер телефону",
+        "en": "Your phone number"
+    },
+    "modal__form-submit": {
+        "uk": "Спробувати",
+        "en": "Try it"
+    },
+    "labelPolicy": {
+        "uk": "Я згоден(на) з ",
+        "en": "I agree with "
+    },
+    "policyLink": {
+        "uk": "політикою конфіденційності",
+        "en": "the privacy policy"
+    },
+    "modal__window-message": {
+        "uk": "Незабаром з вами зв'яжемося, очікуйте, будь ласка, дзвінка!😊",
+        "en": "We will contact you soon, please wait for the call!😊"
+    },
+    "header__mobile-menu-item-Main": {
+        "uk": "Головна",
+        "en": "Main"
+    },
+    "header__mobile-menu-item-Prengi": {
+        "uk": "Модулі",
+        "en": "Modules"
+    },
+    "header__mobile-menu-item-Products": {
+        "uk": "Галузі",
+        "en": "Industries"
+    },
+    "header__mobile-menu-item-Footer": {
+        "uk": "Про нас",
+        "en": "About us"
+    },
+    "header__mobile-menu-item-advantages": {
+        "uk": "Наші обов'язки",
+        "en": "Our duties"
+    },
+    "main__title": {
+        "uk": "Керуйте своїм бізнесом через смартфон",
+        "en": "Manage your business through your smartphone"
+    },
+    "main__subtitle": {
+        "uk": "- Platform for transparent business management",
+        "en": "test"
+    },
+    "button_main": {
+        "uk": "Get access",
+        "en": "test"
+    },
+    "prengi__info-block-text-Schedule": {
+        "uk": "Нема оперативності у прийнятті рішень?",
+        "en": "Is there no promptness in decision-making?"
+    },
+    "prengi__info-block-text-Bd": {
+        "uk": "Нема контролю обслуговування?",
+        "en": "No service control?"
+    },
+    "prengi__info-block-text-Analyse": {
+        "uk": "Важко прогнозувати та аналізувати дані?",
+        "en": "Difficult to forecast and analyze data?"
+    },
+    "prengi__title": {
+        "uk": "З PRENGI",
+        "en": "With PRENGI"
+    },
+    "prengi__info-block-proposition-Money": {
+        "uk": "Всі витрати заплановані та розписані",
+        "en": "All expenses are planned and scheduled"
+    },
+    "prengi__info-block-proposition-Analitycs": {
+        "uk": "Коректна аналітика даних online",
+        "en": "Correct data analytics online"
+    },
+    "prengi__info-block-proposition-Integration": {
+        "uk": "Проста інтеграція з будь-яким вашим ПЗ",
+        "en": "Easy integration with any of your software"
+    },
+    "title_products": {
+        "uk": "Prengi пропонує експертні рішення для вашої галузі",
+        "en": "Prengi offers expert solutions for your industry"
+    },
+    "title_advantages": {
+        "uk": "Переваги Prengi для вашої галузі",
+        "en": "Prengi benefits for your industry"
+    },
+    "advantages__block-text-Testing": {
+        "uk": "Можливість впровадження та тестування в реальному часі",
+        "en": "Ability to implement and test in real time"
+    },
+    "advantages__block-text-Accounting": {
+        "uk": "Система \"Intellect\", облік рівня доступів",
+        "en": "The \"Intellect\" system, access level accounting"
+    },
+    "advantages__block-text-Mobile": {
+        "uk": "Можливість використовувати з будь-якої точки світу з будь-якого пристрою",
+        "en": "Ability to use from anywhere in the world from any device"
+    },
+    "advantages__block-text-Programmer": {
+        "uk": "Нема потреби у встановленні та стаціонарної роботи програміста",
+        "en": "There is no need for installation and stationary work of the programmer"
+    },
+    "advantages__block-text-Life": {
+        "uk": "\"Живі\" бізнес-процеси",
+        "en": "\"Live\" business processes"
+    },
+    "advantages__block-text-Payment": {
+        "uk": "Жодних передоплат, оплата після старту",
+        "en": "No prepayments, payment after the start"
+    },
+    "title_servers": {
+        "uk": "Варіанти розгортання",
+        "en": "Options for deploying"
+    },
+    "title_servers2": {
+        "uk": "ваших даних",
+        "en": "your data"
+    },
+    "servers__block-title-Server": {
+        "uk": "Хмарне сховище",
+        "en": "Cloud storage"
+    },
+    "servers__block-text-Server": {
+        "uk": "Це виділений користувачеві простір на жорсткому диску сервера, що знаходиться в Інтернеті.",
+        "en": "This is the space allocated to the user on the hard disk of a server located on the Internet."
+    },
+    "servers__block-title-Deploy": {
+        "uk": "Розміщення на сервері",
+        "en": "Hosting on the server"
+    },
+    "servers__block-text-Deploy": {
+        "uk": "Послуга оренди простору у центрі обробки даних призначена для клієнтів.",
+        "en": "The data center space rental service is intended for customers."
+    },
+    "title_startWork": {
+        "uk": "Розпочати дуже просто!",
+        "en": "It's very easy to get started!"
+    },
+    "title_startWork2": {
+        "uk": "Треба отримати доступ й почати роботу!",
+        "en": "Get access and get started!"
+    },
+    "footer__title-Company": {
+        "uk": "Про компанію",
+        "en": "About the company"
+    },
+    "footer__menu-link-Tasks": {
+        "uk": "Керування задачами",
+        "en": "Task management"
+    },
+    "footer__menu-link-Customering": {
+        "uk": "Обслуговування",
+        "en": "Service"
+    },
+    "footer__menu-link-Docs": {
+        "uk": "Паспорт об'єкта",
+        "en": "Passport of the object"
+    },
+    "footer__menu-link-Automate": {
+        "uk": "Автоматизація бізнес-процесів (BPM)",
+        "en": "Business Process Automation (BPM)"
+    },
+    "footer__menu-link-Project": {
+        "uk": "Проєктне управління (РРМ)",
+        "en": "Project management (PM)"
+    },
+    "footer__menu-link-Control": {
+        "uk": "Управління підрядниками",
+        "en": "Management of contractors"
+    },
+    "footer__menu-link-Dashboard": {
+        "uk": "Персональний дашборд",
+        "en": "Personal dashboard"
+    },
+    "footer__menu-link-Quests": {
+        "uk": "Управління завданнями",
+        "en": "Task management"
+    },
+    "footer__menu-link-Algorithms": {
+        "uk": "Управління алгоритмами",
+        "en": "Management of algorithms"
+    },
+    "footer__menu-link-Quality": {
+        "uk": "Управління якістю",
+        "en": "Quality management"
+    },
+    "footer__menu-link-Warehouse": {
+        "uk": "Склад",
+        "en": "Storage"
+    },
+    "footer__menu-link-Calendar": {
+        "uk": "Календар",
+        "en": "Calendar"
+    },
+    "footer__title-Industries": {
+        "uk": "Галузі",
+        "en": "Industries"
+    },
+    "footer__menu-link-Factory": {
+        "uk": "Промисловість",
+        "en": "Industry"
+    },
+    "footer__menu-link-Retail": {
+        "uk": "Рітейл",
+        "en": "Retail"
+    },
+    "footer__menu-link-Facility": {
+        "uk": "Фаціліті",
+        "en": "Facilities"
+    },
+    "footer__menu-link-Logistic": {
+        "uk": "Логістика",
+        "en": "Logistics"
+    },
+    "footer__title_About": {
+        "uk": "Про нас",
+        "en": "About us"
+    },
+    "footer__menu-link-History": {
+        "uk": "Історія",
+        "en": "History"
+    },
+    "footer__menu-link-Relations": {
+        "uk": "Наші відносини",
+        "en": "Our relationship"
+    },
+    "footer__menu-link-Team": {
+        "uk": "Команда",
+        "en": "Team"
+    },
+    "footer__menu-link-Contacts": {
+        "uk": "Контакти",
+        "en": "Contacts"
+    },
+    "footer__text": {
+        "uk": "© Prengi Ink. 2008-2017 Усі права захищені.",
+        "en": "© Prengi Ink. 2008-2017 All rights reserved."
+    }
+}
