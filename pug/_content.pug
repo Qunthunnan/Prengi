@@ -13,7 +13,7 @@
 			.modal__form-policy
 				input#policy(required='' type='checkbox' name='policy')
 				label(for='policy')=ditictionary['labelPolicy'][`${lang}`]
-					a(target='_blank' href='../policy/')=ditictionary['policyLink'][`${lang}`]
+					a(target='_blank' href=`/${lang}/policy`)=ditictionary['policyLink'][`${lang}`]
 	.modal__window.modal__window-done
 		button.modal__window-close ╳
 		.modal__window-message=ditictionary['modal__window-message'][`${lang}`]
